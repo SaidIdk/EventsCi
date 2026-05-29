@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventSci APP | Gestión de Eventos Académicos</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    header {
+      position: relative;
+      color: white;
+      padding: 95px 20px;
+      text-align: center;
+      background: url('images/eventsci-header.png') center center / cover no-repeat;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.64);
+      z-index: 1;
+    }
+
+    header > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo-box {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0f766e;
+      font-size: 36px;
+      font-weight: 800;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    }
+
+    header h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      max-width: 850px;
+      margin: 0 auto 25px;
+      font-size: 18px;
+      opacity: 0.98;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #0f766e;
+    }
+
+    .btn-dark {
+      background: #111827;
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      color: #0f766e;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #6b7280;
+    }
+
+    .about-card {
+      background: white;
+      border-radius: 24px;
+      padding: 35px;
+      box-shadow: 0 10px 30px rgba(15, 118, 110, 0.10);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-card h3 {
+      font-size: 26px;
+      color: #111827;
+      margin-bottom: 15px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .feature-item {
+      background: #ecfeff;
+      padding: 14px;
+      border-radius: 14px;
+      font-weight: 600;
+      color: #0f766e;
+    }
+
+    .phone-preview {
+      background: linear-gradient(180deg, #111827, #334155);
+      border-radius: 36px;
+      padding: 18px;
+      max-width: 280px;
+      margin: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .phone-screen {
+      background: white;
+      border-radius: 26px;
+      padding: 25px 18px;
+      min-height: 420px;
+      text-align: center;
+    }
+
+    .app-icon-small {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #0f766e, #0ea5e9);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .phone-screen h4 {
+      color: #0f766e;
+      margin-bottom: 10px;
+    }
+
+    .mock-list {
+      margin-top: 25px;
+      text-align: left;
+    }
+
+    .mock-item {
+      padding: 12px;
+      background: #f3f4f6;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    /* ── Video tutorials – premium futuristic ── */
+    #tutoriales {
+      background: linear-gradient(160deg, #f0fdfa 0%, #f4f7fb 60%);
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1.5px solid rgba(15,118,110,0.10);
+      box-shadow:
+        0 4px 20px rgba(15,118,110,0.08),
+        0 1px 4px rgba(0,0,0,0.04);
+      transition:
+        transform 0.35s cubic-bezier(.22,1,.36,1),
+        box-shadow 0.35s cubic-bezier(.22,1,.36,1),
+        border-color 0.35s;
+      position: relative;
+    }
+
+    .video-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(15,118,110,0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .video-card:hover {
+      transform: translateY(-9px) scale(1.012);
+      border-color: rgba(15,118,110,0.28);
+      box-shadow:
+        0 24px 56px rgba(15,118,110,0.18),
+        0 0 0 2px rgba(15,118,110,0.10),
+        0 0 32px rgba(14,165,233,0.08);
+    }
+
+    /* ── 9:16 vertical embed ── */
+    .video-embed-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 177.78%;   /* true 9:16 portrait */
+      background: #0d1117;
+      border-radius: 24px 24px 0 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .video-embed-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+      display: block;
+      /* Google Drive player fills the container preserving video's own aspect */
+    }
+
+    .video-card-body {
+      padding: 20px 20px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .video-role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: linear-gradient(90deg, #ccfbf1, #e0f2fe);
+      color: #0f766e;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border-radius: 999px;
+      width: fit-content;
+      border: 1px solid rgba(15,118,110,0.15);
+    }
+
+    .video-card h3 {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .video-card p {
+      font-size: 12.5px;
+      color: #6b7280;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* thin accent line at card bottom */
+    .video-card::after {
+      content: '';
+      display: block;
+      height: 3px;
+      background: linear-gradient(90deg, #0f766e, #0ea5e9);
+      border-radius: 0 0 24px 24px;
+    }
+
+    .download-section {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+    }
+
+    .download-section h2 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .download-section p {
+      color: #cbd5e1;
+      margin-bottom: 25px;
+    }
+
+    .store-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .store-btn {
+      background: white;
+      color: #111827;
+      padding: 16px 26px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 800;
+      min-width: 210px;
+      transition: transform 0.25s, box-shadow 0.25s;
+      display: inline-block;
+    }
+
+    .store-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    }
+
+    /* QR block */
+    .qr-block {
+      margin: 36px auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .qr-container {
+      background: white;
+      border-radius: 22px;
+      padding: 16px;
+      width: 190px;
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px rgba(14,165,233,0.18),
+                  0 0 32px rgba(14,165,233,0.25),
+                  0 12px 40px rgba(0,0,0,0.35);
+    }
+
+    .qr-container img {
+      width: 158px;
+      height: 158px;
+      object-fit: contain;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .qr-label {
+      font-size: 14px;
+      color: #94a3b8;
+      letter-spacing: 0.01em;
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border-top: 5px solid #0f766e;
+    }
+
+    .contact-card h3 {
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
+    .contact-card a {
+      color: #0f766e;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 14px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 1050px) {
+      .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 800px) {
+      header h1 {
+        font-size: 32px;
+      }
+
+      .about-card {
+        grid-template-columns: 1fr;
+      }
+
+      .videos-grid,
+      .contacts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-box">ES</div>
+    <h1>EventSci APP</h1>
+    <p>Aplicación móvil de gestión de eventos académicos: Jornadas Científicas, seminarios, workshops, congresos y otras actividades institucionales.</p>
+    <div class="hero-buttons">
+      <a href="#descarga" class="btn btn-primary">Descargar la APP</a>
+      <a href="#tutoriales" class="btn btn-dark">Ver tutoriales</a>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <h2>Sobre EventSci</h2>
+        <p>Una solución desarrollada para fortalecer la gestión académica y científica.</p>
+      </div>
+
+      <div class="about-card">
+        <div>
+          <h3>Gestión inteligente de eventos desde tu celular</h3>
+          <p>
+            <strong>EventSci</strong> es una aplicación móvil creada por el <strong>Centro Universitario de Innovación Code5</strong> de la <strong>Escuela Profesional de Ingeniería de Sistemas</strong> de la <strong>Universidad Peruana Unión, filial Juliaca</strong>.
+          </p>
+          <p>
+            La APP permite organizar, registrar, acompañar y gestionar eventos académicos como Jornadas Científicas, seminarios, workshops, congresos y otras actividades formativas, facilitando la participación de estudiantes, jurados, coordinadores y equipos técnicos.
+          </p>
+
+          <div class="features">
+            <div class="feature-item">✓ Registro de participantes</div>
+            <div class="feature-item">✓ Gestión de eventos</div>
+            <div class="feature-item">✓ Soporte para jurados</div>
+            <div class="feature-item">✓ Acompañamiento técnico</div>
+          </div>
+        </div>
+
+        <div class="phone-preview">
+          <div class="phone-screen">
+            <div class="app-icon-small">ES</div>
+            <h4>EventSci APP</h4>
+            <p>Eventos académicos en una sola plataforma.</p>
+            <div class="mock-list">
+              <div class="mock-item">📌 Jornada Científica 2026</div>
+              <div class="mock-item">🎓 Seminarios académicos</div>
+              <div class="mock-item">🧑‍🏫 Workshop de investigación</div>
+              <div class="mock-item">✅ Validación y asistencia</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tutoriales">
+    <div class="container">
+      <div class="section-title">
+        <h2>Video tutoriales</h2>
+        <p>Aprende a utilizar EventSci según tu rol dentro del evento.</p>
+      </div>
+
+      <div class="videos-grid">
+
+        <div class="video-card">
+          <div class="video-embed-wrapper">
+            <iframe
+              src="https://drive.google.com/file/d/1HHOFQAWwy-LREqAe87rLDF_CPhgAcI93/preview"
+              title="Tutorial Rol Estudiante"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-card-body">
+            <span class="video-role-badge">&#9654; Tutorial 1</span>
+            <h3>Rol Estudiante</h3>
+            <p>Aprende a registrarte, participar en eventos y acceder correctamente a las funcionalidades disponibles para estudiantes dentro de EventSci APP.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-embed-wrapper">
+            <iframe
+              src="https://drive.google.com/file/d/1wLwgyd7l6FqezhyqMsrBC9EbP8EQeCwY/preview"
+              title="Tutorial Rol Jurado"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-card-body">
+            <span class="video-role-badge">&#9654; Tutorial 2</span>
+            <h3>Rol Jurado</h3>
+            <p>Conoce cómo evaluar proyectos, revisar participantes y gestionar calificaciones dentro de la plataforma EventSci.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-embed-wrapper">
+            <iframe
+              src="https://drive.google.com/file/d/1_UPx_P2CyK_nt1iaygoBDHcKuPD56HtK/preview"
+              title="Tutorial Rol Coordinador"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-card-body">
+            <span class="video-role-badge">&#9654; Tutorial 3</span>
+            <h3>Rol Coordinador</h3>
+            <p>Aprende a administrar eventos, supervisar actividades y gestionar correctamente el flujo general del sistema.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-embed-wrapper">
+            <iframe
+              src="https://drive.google.com/file/d/1o6B5K5_1H0dRmcthg5rRAup_ON5wdPvN/preview"
+              title="Tutorial Rol SOCIES"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-card-body">
+            <span class="video-role-badge">&#9654; Tutorial 4</span>
+            <h3>Rol SOCIES</h3>
+            <p>Descubre cómo monitorear eventos, supervisar procesos y utilizar las funciones disponibles para SOCIES.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="descarga" class="download-section">
+    <div class="container">
+      <h2>Descarga EventSci APP</h2>
+      <p>Disponible para dispositivos iPhone y Android.</p>
+      <div class="store-buttons">
+        <a href="https://drive.google.com/drive/folders/1vIw6YX5jmf3z9LmRvjZrHeWBJMqDzjPO?usp=sharing" target="_blank" class="store-btn"> Descargar para iPhone</a>
+        <a href="https://drive.google.com/drive/folders/1vIw6YX5jmf3z9LmRvjZrHeWBJMqDzjPO?usp=sharing" target="_blank" class="store-btn">▶ Descargar para Android</a>
+      </div>
+      <div class="qr-block">
+        <div class="qr-container">
+          <img
+            src="https://lh3.googleusercontent.com/d/1uRubevrTMp5x1eHhQzQyOUNkDKk5E8mx"
+            alt="QR para descargar EventSci APP"
+            width="158"
+            height="158"
+            loading="eager"
+            decoding="async"
+            referrerpolicy="no-referrer"
+          />
+        </div>
+        <p class="qr-label">Escanea el QR para descargar EventSci APP</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contáctenos</h2>
+        <p>Agentes técnicos disponibles para acompañarte en el uso de EventSci.</p>
+      </div>
+
+      <div class="contacts-grid">
+        <div class="contact-card">
+          <h3>Agente Técnico 1</h3>
+          <p>Soporte EventSci</p>
+          <a href="tel:+51900000001">+51 900 000 001</a>
+        </div>
+
+        <div class="contact-card">
+          <h3>Agente Técnico 2</h3>
+          <p>Soporte EventSci</p>
+          <a href="tel:+51900000002">+51 900 000 002</a>
+        </div>
+
+        <div class="contact-card">
+          <h3>Agente Técnico 3</h3>
+          <p>Soporte EventSci</p>
+          <a href="tel:+51900000003">+51 900 000 003</a>
+        </div>
+
+        <div class="contact-card">
+          <h3>Agente Técnico 4</h3>
+          <p>Soporte EventSci</p>
+          <a href="tel:+51900000004">+51 900 000 004</a>
+        </div>
+
+        <div class="contact-card">
+          <h3>Agente Técnico 5</h3>
+          <p>Soporte EventSci</p>
+          <a href="tel:+51900000005">+51 900 000 005</a>
+        </div>
+
+        <div class="contact-card">
+          <h3>Agente Técnico 6</h3>
+          <p>Soporte EventSci</p>
+          <a href="tel:+51900000006">+51 900 000 006</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>EventSci APP</strong> | Centro Universitario de Innovación Code5</p>
+    <p>Escuela Profesional de Ingeniería de Sistemas - Universidad Peruana Unión, Juliaca</p>
+  </footer>
+
+</body>
+</html>
