@@ -211,9 +211,9 @@
 
     .videos-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 28px;
-      align-items: start;
+      align-items: stretch;   /* equal-height cards */
     }
 
     .video-card {
@@ -222,6 +222,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      height: 100%;           /* fill grid row fully */
       border: 1.5px solid rgba(15,118,110,0.10);
       box-shadow:
         0 4px 20px rgba(15,118,110,0.08),
@@ -252,24 +253,25 @@
         0 0 32px rgba(14,165,233,0.08);
     }
 
-    /* ── 9:16 vertical embed ── */
+    /* ── vertical embed – compact 4:5 ratio ── */
     .video-embed-wrapper {
       position: relative;
       width: 100%;
-      padding-top: 177.78%;   /* true 9:16 portrait */
+      padding-top: 133%;      /* compact portrait: shows video without excessive black bars */
       background: #0d1117;
       border-radius: 24px 24px 0 0;
       overflow: hidden;
       z-index: 1;
+      flex-shrink: 0;
     }
 
     .video-embed-wrapper iframe {
       position: absolute;
-      top: 0; left: 0;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
       width: 100%; height: 100%;
       border: none;
       display: block;
-      /* Google Drive player fills the container preserving video's own aspect */
     }
 
     .video-card-body {
@@ -280,6 +282,7 @@
       gap: 7px;
       position: relative;
       z-index: 1;
+      min-height: 110px;      /* uniform body height across cards */
     }
 
     .video-role-badge {
@@ -441,14 +444,14 @@
       color: white;
     }
 
-    @media (max-width: 1050px) {
+    @media (max-width: 900px) {
       .videos-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 560px) {
       .videos-grid {
         grid-template-columns: 1fr;
         gap: 18px;
@@ -549,21 +552,6 @@
 
       <div class="videos-grid">
 
-        <div class="video-card">
-          <div class="video-embed-wrapper">
-            <iframe
-              src="https://drive.google.com/file/d/1HHOFQAWwy-LREqAe87rLDF_CPhgAcI93/preview"
-              title="Tutorial Rol Estudiante"
-              allow="autoplay; fullscreen"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="video-card-body">
-            <span class="video-role-badge">&#9654; Tutorial 1</span>
-            <h3>Rol Estudiante</h3>
-            <p>Aprende a registrarte, participar en eventos y acceder correctamente a las funcionalidades disponibles para estudiantes dentro de EventSci APP.</p>
-          </div>
-        </div>
 
         <div class="video-card">
           <div class="video-embed-wrapper">
@@ -575,7 +563,7 @@
             </iframe>
           </div>
           <div class="video-card-body">
-            <span class="video-role-badge">&#9654; Tutorial 2</span>
+            <span class="video-role-badge">&#9654; Tutorial 1</span>
             <h3>Rol Jurado</h3>
             <p>Conoce cómo evaluar proyectos, revisar participantes y gestionar calificaciones dentro de la plataforma EventSci.</p>
           </div>
@@ -591,7 +579,7 @@
             </iframe>
           </div>
           <div class="video-card-body">
-            <span class="video-role-badge">&#9654; Tutorial 3</span>
+            <span class="video-role-badge">&#9654; Tutorial 2</span>
             <h3>Rol Coordinador</h3>
             <p>Aprende a administrar eventos, supervisar actividades y gestionar correctamente el flujo general del sistema.</p>
           </div>
@@ -607,7 +595,7 @@
             </iframe>
           </div>
           <div class="video-card-body">
-            <span class="video-role-badge">&#9654; Tutorial 4</span>
+            <span class="video-role-badge">&#9654; Tutorial 3</span>
             <h3>Rol SOCIES</h3>
             <p>Descubre cómo monitorear eventos, supervisar procesos y utilizar las funciones disponibles para SOCIES.</p>
           </div>
@@ -637,7 +625,7 @@
             referrerpolicy="no-referrer"
           />
         </div>
-        <p class="qr-label">Escanea el QR para ingresar a EventSci APP</p>
+        <p class="qr-label">Escanea el QR para descargar EventSci APP</p>
       </div>
     </div>
   </section>
