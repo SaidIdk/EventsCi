@@ -209,11 +209,17 @@
       background: linear-gradient(160deg, #f0fdfa 0%, #f4f7fb 60%);
     }
 
+    /* ── Video tutorials grid ── */
+    #tutoriales {
+      background: linear-gradient(160deg, #f0fdfa 0%, #f4f7fb 60%);
+    }
+
     .videos-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 28px;
-      align-items: stretch;   /* equal-height cards */
+      align-items: stretch;
+      justify-content: center;
     }
 
     .video-card {
@@ -222,7 +228,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      height: 100%;           /* fill grid row fully */
+      height: 100%;
       border: 1.5px solid rgba(15,118,110,0.10);
       box-shadow:
         0 4px 20px rgba(15,118,110,0.08),
@@ -245,7 +251,7 @@
     }
 
     .video-card:hover {
-      transform: translateY(-9px) scale(1.012);
+      transform: translateY(-8px) scale(1.012);
       border-color: rgba(15,118,110,0.28);
       box-shadow:
         0 24px 56px rgba(15,118,110,0.18),
@@ -253,11 +259,11 @@
         0 0 32px rgba(14,165,233,0.08);
     }
 
-    /* ── vertical embed – compact 4:5 ratio ── */
+    /* ── 9:16 HTML5 video wrapper ── */
     .video-embed-wrapper {
       position: relative;
       width: 100%;
-      padding-top: 133%;      /* compact portrait: shows video without excessive black bars */
+      padding-top: 177.78%;   /* true 9:16 */
       background: #0d1117;
       border-radius: 24px 24px 0 0;
       overflow: hidden;
@@ -265,13 +271,12 @@
       flex-shrink: 0;
     }
 
-    .video-embed-wrapper iframe {
+    .video-embed-wrapper video {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0; left: 0;
       width: 100%; height: 100%;
-      border: none;
       display: block;
+      background: #000;
     }
 
     .video-card-body {
@@ -282,7 +287,7 @@
       gap: 7px;
       position: relative;
       z-index: 1;
-      min-height: 110px;      /* uniform body height across cards */
+      min-height: 110px;
     }
 
     .video-role-badge {
@@ -444,14 +449,14 @@
       color: white;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .videos-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
       }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 580px) {
       .videos-grid {
         grid-template-columns: 1fr;
         gap: 18px;
@@ -552,15 +557,15 @@
 
       <div class="videos-grid">
 
-
         <div class="video-card">
           <div class="video-embed-wrapper">
-            <iframe
-              src="https://drive.google.com/file/d/1wLwgyd7l6FqezhyqMsrBC9EbP8EQeCwY/preview"
-              title="Tutorial Rol Jurado"
-              allow="autoplay; fullscreen"
-              allowfullscreen>
-            </iframe>
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              aria-label="Tutorial Rol Jurado">
+              <source src="videos/jurado.mp4" type="video/mp4" />
+            </video>
           </div>
           <div class="video-card-body">
             <span class="video-role-badge">&#9654; Tutorial 1</span>
@@ -571,12 +576,13 @@
 
         <div class="video-card">
           <div class="video-embed-wrapper">
-            <iframe
-              src="https://drive.google.com/file/d/11inlOhDAjxx_4K96FStGdnIljhQknPEC/preview"
-              title="Tutorial Rol Coordinador"
-              allow="autoplay; fullscreen"
-              allowfullscreen>
-            </iframe>
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              aria-label="Tutorial Rol Coordinador">
+              <source src="videos/coordinador.mp4" type="video/mp4" />
+            </video>
           </div>
           <div class="video-card-body">
             <span class="video-role-badge">&#9654; Tutorial 2</span>
@@ -587,12 +593,13 @@
 
         <div class="video-card">
           <div class="video-embed-wrapper">
-            <iframe
-              src="https://drive.google.com/file/d/1o6B5K5_1H0dRmcthg5rRAup_ON5wdPvN/preview"
-              title="Tutorial Rol SOCIES"
-              allow="autoplay; fullscreen"
-              allowfullscreen>
-            </iframe>
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              aria-label="Tutorial Rol SOCIES">
+              <source src="videos/socies.mp4" type="video/mp4" />
+            </video>
           </div>
           <div class="video-card-body">
             <span class="video-role-badge">&#9654; Tutorial 3</span>
@@ -617,7 +624,7 @@
         <div class="qr-container">
           <img
             src="https://lh3.googleusercontent.com/d/1zE3TYGlnx9z1BjCn6uuvDKY0pVvSbMc0"
-            alt="QR para descargar EventSci APP"
+            alt="QR para ingresar a EventSci APP"
             width="158"
             height="158"
             loading="eager"
