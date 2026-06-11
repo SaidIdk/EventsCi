@@ -177,13 +177,8 @@
       height: 70px;
       margin: 0 auto 18px;
       border-radius: 18px;
-      background: linear-gradient(135deg, #0f766e, #0ea5e9);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      font-weight: 800;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
     }
 
     .phone-screen h4 {
@@ -533,7 +528,15 @@
 
         <div class="phone-preview">
           <div class="phone-screen">
-            <div class="app-icon-small">ES</div>
+            <div class="app-icon-small">
+              <img
+                src="https://lh3.googleusercontent.com/d/1cw_bEP_pOSPy2pohJUa-WiTyFnEB_w_A"
+                alt="EventSci Logo"
+                width="70" height="70"
+                loading="eager" decoding="async" referrerpolicy="no-referrer"
+                style="width:100%;height:100%;object-fit:cover;border-radius:18px;display:block;"
+              />
+            </div>
             <h4>EventSci APP</h4>
             <p>Eventos académicos en una sola plataforma.</p>
             <div class="mock-list">
@@ -617,14 +620,14 @@
       <h2>Descarga EventSci APP</h2>
       <p>Disponible para dispositivos iPhone y Android.</p>
       <div class="store-buttons">
-        <a href="https://apps.apple.com/pe/app/eventsci/id6777822731" target="_blank" class="store-btn"> Descargar para iPhone</a>
+        <a href="https://drive.google.com/drive/folders/1vIw6YX5jmf3z9LmRvjZrHeWBJMqDzjPO?usp=sharing" target="_blank" class="store-btn"> Descargar para iPhone</a>
         <a href="https://play.google.com/store/apps/details?id=com.eventsci.eventos" target="_blank" class="store-btn">▶ Descargar para Android</a>
       </div>
       <div class="qr-block">
         <div class="qr-container">
           <img
             src="https://lh3.googleusercontent.com/d/1zE3TYGlnx9z1BjCn6uuvDKY0pVvSbMc0"
-            alt="QR para ingresar a EventSci APP"
+            alt="QR para descargar EventSci APP"
             width="158"
             height="158"
             loading="eager"
@@ -632,7 +635,7 @@
             referrerpolicy="no-referrer"
           />
         </div>
-        <p class="qr-label">Escanea el QR para ingresar a EventSci APP</p>
+        <p class="qr-label">Escanea el QR para descargar EventSci APP</p>
       </div>
     </div>
   </section>
